@@ -2,7 +2,5 @@ import sys
 
 n = int(sys.stdin.readline().strip())
 
-numbers = []
-for i in sys.stdin.readline().split():
-    numbers.append(int(i))
+numbers = list(map(int, sys.stdin.readline().split()))
 print(min(numbers) ,max(numbers))
