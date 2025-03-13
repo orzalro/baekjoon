@@ -2,43 +2,30 @@ import sys
 
 
 n = int(sys.stdin.readline().strip())
-l = []
+l = dict()
 target = []
 for i in range(n):
-    l.append(i + 1)
+    l[i + 1] = 1
     target.append(int(sys.stdin.readline().strip()))
 
 def calc(l, target):
-    stack = []
-    poplist = []
-    answer = []
-
+    answer = ''
+    pre = 0
     for i in target:
-        if len(l) > 0 or len(stack):
-            if i < l[0] if len(l) > 0 else stack[-1]:
-                flag = 0
-                for j in range(len(stack), 0, -1):
-                    answer.append('-')
-                    if i == stack[j - 1]:
-                        flag = 1
-                        poplist.append(stack.pop())
-                        break
-                if flag == 0:
-                    return 'NO'
+        if i > pre:
+            answer += ('+ ' * (sum(l[j] for j in range(pre + 1, i + 1))) + '- ')
+            pre = i
+            l[i] = 0
+        else:
+            if sum(l[j] for j in range(i + 1, pre)) == 0:
+                answer += ('- ')
+                pre = i
+                l[i] = 0
             else:
-                flag = 0
-                for j in range(len(l)):
-                    j = l.pop(0)
-                    stack.append(j)
-                    answer.append('+')
-                    if i == j:
-                        flag = 1
-                        answer.append('-')
-                        poplist.append(stack.pop())
-                        break
-                if flag == 0:
-                    return 'NO'
+                return 'NO'
 
-    return '\n'.join(answer)
+    return '\n'.join(answer.split())
     
 print(calc(l, target))
+
+# 높거나 바로 다음 수인 경우만 허용
