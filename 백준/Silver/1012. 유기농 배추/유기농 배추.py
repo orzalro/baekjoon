@@ -5,33 +5,31 @@ input = sys.stdin.readline
 
 t = int(input().strip())
 
-def calc(x, y, l, s):
-    if [x, y] in s: return 0
-    s.append([x, y])
-
-    if [x, y + 1] in l and [x, y + 1] not in s:
-        calc(x, y + 1, l, s)
-    if [x, y - 1] in l and [x, y - 1] not in s:
-        calc(x, y - 1, l, s)
-    if [x - 1, y] in l and [x - 1, y] not in s:
-        calc(x - 1, y, l, s)
-    if [x + 1, y] in l and [x + 1, y] not in s:
-        calc(x + 1, y, l, s)
+def calc(x, y, l):
+    l[x][y] = 0
+    if y + 1 < len(l[0]) and l[x][y + 1] == 1:
+        calc(x, y + 1, l)
+    if y - 1 >= 0 and l[x][y - 1] == 1:
+        calc(x, y - 1, l)
+    if x - 1 >= 0 and l[x - 1][y] == 1:
+        calc(x - 1, y, l)
+    if x + 1 < len(l) and l[x + 1][y] == 1:
+        calc(x + 1, y, l)
     
-    return 1
 
 for testcase in range(t):
-    cabage_list = []
-    s = []
+    m, n, k = map(int, input().split())
+    cabage_list = [[0] * n for _ in range(m)]
     area = 0
 
-    m, n, k = map(int, input().split())
     for i in range(k):
         x, y = map(int, input().split())
-        cabage_list.append([x, y])
+        cabage_list[x][y] = 1
     
-    for i in cabage_list:
-        x, y = i[0], i[1]
-        area += calc(x, y, cabage_list, s)
+    for y in range(n):
+        for x in range(m):
+            if cabage_list[x][y] == 1:
+                calc(x, y, cabage_list)
+                area += 1
     
     print(area)
