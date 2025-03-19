@@ -3,12 +3,8 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-
 l = list(map(int, input().split()))
-d = {}
+d = {key:i for i, key in enumerate(sorted(set(l)))}
 
-for i, key in enumerate(sorted(set(l))):
-    if key not in d: d[key] = i
-
-for i in l:
-	print(d[i])
+answer = [str(d[i]) for i in l]
+print(' '.join(answer))
