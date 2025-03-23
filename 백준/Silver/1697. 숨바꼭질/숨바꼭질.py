@@ -5,32 +5,18 @@ input = sys.stdin.readline
 
 n, k = map(int, input().split())
 
-def bfs():
-    q = deque()
-    q.append(n)
-    next_q = deque()
-    visited = set()
-    depth = 0
-    
-    while n < k:
-        current = q.popleft()
-        visited.add(current)
-        if current == k:
-            break
-        if current - 1 not in visited and current - 1 <= 100000:
-            next_q.append(current - 1)
-        if current + 1 not in visited and current + 1 <= 100000:
-            next_q.append(current + 1)
-        if current * 2 not in visited and current * 2 <= 100000:
-            next_q.append(current * 2)
-        
-        if len(q) == 0:
-            q = next_q
-            next_q = deque()
-            depth += 1
-    return depth
+def dfs(n, k):
+    if n == k: return 0
+    elif k == 1: return 1
+    elif n < k:
+        if k % 2 == 0:
+            return min(k - n, dfs(n, k // 2) + 1)
+        else:
+            return 1 + min(dfs(n, k - 1), dfs(n, k + 1))
+    else:
+        return n - k
 
 if n > k:
     print(n - k)
 else:
-    print(bfs())
+    print(dfs(n, k))
