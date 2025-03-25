@@ -7,6 +7,7 @@ t = int(input())
 
 def ac(p, x):
     reverse = 0
+    p = p.replace('RR','')
     while len(p) != 0:
         command = p[0]
         p = p[1:]
@@ -29,5 +30,5 @@ for i in range(t):
     n = int(input())
     x = input()
     x = deque(map(int, x.strip()[1:-1].split(','))) if n > 0 else []
-
+    
     print(ac(p, x))
