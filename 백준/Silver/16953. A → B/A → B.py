@@ -4,23 +4,14 @@ input = sys.stdin.readline
 
 a, b = map(int, (input().split()))
 
-def bfs(a, b):
-    q = [a]
-    new_q = []
-    visited = set()
+def greedy(a, b):
     count = 1
-
-    while len(q) != 0:
-        for num in q:
-            if num == b:
-                return count
-            else:
-                if (num * 10 + 1) not in visited and (num * 10 + 1) <= b: visited.add(num * 10 + 1); new_q.append(num * 10 + 1)
-                if (num * 2) not in visited and (num * 2) <= b: visited.add(num * 2); new_q.append(num * 2)
-        q = new_q
-        new_q = []
+    while a != b:
+        if a > b: return -1
+        if b % 10 == 1: b = b // 10
+        elif b % 2 == 0: b = b // 2
+        else: return -1
         count += 1
+    return count
 
-    return -1
-
-print(bfs(a, b))
+print(greedy(a, b))
