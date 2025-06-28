@@ -1,5 +1,4 @@
 import sys
-from functools import reduce
 input = sys.stdin.readline
 
 def get_size(n):
