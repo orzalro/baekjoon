@@ -3,12 +3,11 @@ input = sys.stdin.readline
 
 n, m = map(int, input().split())
 
-l = [0 for i in range(n)]
+l = [0] * n
 
-for i in range(m):
+for _ in range(m):
     a, b = map(int, input().split())
     l[a - 1] += 1
     l[b - 1] += 1
 
-for i in l:
-    print(i)
+print(*l, sep='\n')
