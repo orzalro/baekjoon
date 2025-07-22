@@ -9,6 +9,4 @@ t = int(input())
 for i in range(t):
     a, b = map(int, input().split())
     s = input().strip()
-    for i in s:
-        print(chr(E(ord(i), a, b)), end='')
-    print()
+    print(''.join(chr(E(ord(i), a, b)) for i in s))
