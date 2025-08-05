@@ -27,7 +27,7 @@ for t1 in query:
         choco_radius = 8 * n - t / 12
         if choco_radius > 0:
             r += choco_radius
-    for t2, n in [[i[0], i[1]]for i in coffee if i[0] <= t1]:
+    for t2, n in coffee:
         if t2 > t1:
             continue
         t = t1 - t2
