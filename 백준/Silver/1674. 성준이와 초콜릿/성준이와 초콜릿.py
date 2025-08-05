@@ -20,12 +20,16 @@ while True:
 query.sort()
 for t1 in query:
     r = 0
-    for t2, n in [[i[0], i[1]]for i in choco if i[0] <= t1]:
+    for t2, n in choco:
+        if t2 > t1:
+            continue
         t = t1 - t2
         choco_radius = 8 * n - t / 12
         if choco_radius > 0:
             r += choco_radius
     for t2, n in [[i[0], i[1]]for i in coffee if i[0] <= t1]:
+        if t2 > t1:
+            continue
         t = t1 - t2
         coffee_radius = 2 * n - t * t / 79
         if coffee_radius > 0:
