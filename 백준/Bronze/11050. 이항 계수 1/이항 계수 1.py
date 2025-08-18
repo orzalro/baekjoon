@@ -1,16 +1,12 @@
 import sys
+input = sys.stdin.readline
 
-n, k = map(int, (sys.stdin.readline().split()))
-
-def calc(n, k):
-    list = [[0] * (k + 1) for _ in range(n + 1)]
-
-    for i in range(n + 1):
-        for j in range(min(i, k) + 1):
-            if j == 0 or j == i:
-                list[i][j] = 1
-            else:
-                list[i][j] = list[i - 1][j - 1] + list[i - 1][j]
-    return list[n][k]
-
-print(calc(n, k))
+def ncr(n, r):
+    result = 1
+    for i in range(n, r, -1):
+        result *= i
+    for j in range(n - r, 1, -1):
+        result = result // j
+    return result
+n, k = map(int, input().split())
+print(ncr(n, k))
