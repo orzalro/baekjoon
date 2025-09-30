@@ -1,0 +1,1 @@
+print(291, 'orzwizard', sep='\n')
