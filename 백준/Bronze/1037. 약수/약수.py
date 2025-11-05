@@ -1,0 +1,4 @@
+n = int(input())
+l = [*map(int, input().split())]
+l.sort()
+print(l[0] * l[-1])
