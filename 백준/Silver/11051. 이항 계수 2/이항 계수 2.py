@@ -1,0 +1,11 @@
+def calc(n, k):
+    num = 1
+    for i in range(n, n - k, -1):
+        num = num * i
+    for i in range(k, 1, -1):
+        num = num // i
+
+    return num % 10007
+
+n, k = map(int, input().split())
+print(calc(n, k))
