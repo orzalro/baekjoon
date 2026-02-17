@@ -1,0 +1,1 @@
+print(f':fan::fan::fan:\n:fan::{input().strip()}::fan:\n:fan::fan::fan:')
