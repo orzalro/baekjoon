@@ -15,10 +15,12 @@ def eratosthenes(num):
 
     return prime
 
-prime = eratosthenes(123456 * 2)
-
+numbers = []
 while True:
     n = int(input())
     if n == 0: break
+    numbers.append(n)
 
+prime = eratosthenes(max(numbers) * 2)
+for n in numbers:
     print(len([num for num in prime if num > n and num <= n * 2]))
