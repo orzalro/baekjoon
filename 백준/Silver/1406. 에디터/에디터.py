@@ -6,24 +6,15 @@ left = deque(input().strip())
 right = deque()
 m = int(input())
 
-length = len(left)
-
-cur = length
 for _ in range(m):
     command = input().split()
-    if command[0] == 'L' and cur > 0:
+    if command[0] == 'L' and left:
         right.appendleft(left.pop())
-        cur -= 1
-    elif command[0] == 'D' and cur < length:
+    elif command[0] == 'D' and right:
         left.append(right.popleft())
-        cur += 1
-    elif command[0] == 'B' and cur > 0:
+    elif command[0] == 'B' and left:
         left.pop()
-        cur -= 1
-        length -= 1
     elif command[0] == 'P':
         left.append(command[1])
-        cur += 1
-        length += 1
 
 print(*left, *right, sep='')
