@@ -7,7 +7,13 @@ board = [input().strip() for _ in range(r)]
 dx = [1, -1, 0, 0]
 dy = [0, 0, 1, -1]
 
+visited_states = set()
+
 def calc(x, y, visited):
+    if (x, y, visited) in visited_states:
+        return 0
+    visited_states.add((x, y, visited))
+
     cnt = 0
 
     for i in range(4):
