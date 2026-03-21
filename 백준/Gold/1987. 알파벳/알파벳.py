@@ -27,6 +27,8 @@ def calc(x, y, visited):
                 continue
 
             cnt = max(cnt, calc(nx, ny, visited | (1 << char)))
+            if cnt == 26:
+                return 26
 
     return cnt + 1
 
